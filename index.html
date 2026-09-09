@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Yu-Gi-Oh! Duel Engine</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: radial-gradient(circle at top, #262626, #060606 78%);
+    color: #eee;
+}
+
+.wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 72px 24px 60px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.hero .glyph {
+    font-size: 40px;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 14px rgba(214, 169, 40, .45));
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: .01em;
+    margin: 0 0 18px;
+    background: linear-gradient(180deg, #f3d878, #b98b28);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 560px;
+    margin: 0 auto;
+    color: #a8a8a8;
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+/* ---------- Portals ---------- */
+
+.portals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 56px;
+}
+
+@media (max-width: 680px) {
+    .portals {
+        grid-template-columns: 1fr;
+    }
+}
+
+.portal {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #151515;
+    border: 1px solid #2c2c2c;
+    border-radius: 14px;
+    padding: 30px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .18s, transform .18s;
+}
+
+.portal:hover {
+    transform: translateY(-3px);
+}
+
+.portal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .18s;
+    background: radial-gradient(circle at 20% 0%, var(--glow), transparent 60%);
+}
+
+.portal:hover::before {
+    opacity: .35;
+}
+
+.portal.duel {
+    --glow: #d6a928;
+}
+
+.portal.duel:hover {
+    border-color: #b98b28;
+}
+
+.portal.builder {
+    --glow: #68448e;
+}
+
+.portal.builder:hover {
+    border-color: #7a56a3;
+}
+
+.portal .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: .08em;
+    color: var(--glow);
+    margin-bottom: 10px;
+}
+
+.portal h2 {
+    font-size: 22px;
+    margin: 0 0 10px;
+}
+
+.portal p {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ---------- Contents ---------- */
+
+.contents {
+    background: #131313;
+    border: 1px solid #262626;
+    border-radius: 14px;
+    padding: 30px 32px;
+}
+
+.contents h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 20px;
+    color: #d6a928;
+}
+
+.contents ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 28px;
+}
+
+@media (max-width: 560px) {
+    .contents ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contents li {
+    color: #b8b8b8;
+    font-size: 14px;
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+}
+
+.contents li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: #b98b28;
+    border-radius: 50%;
+}
+
+.contents strong {
+    color: #eee;
+}
+
+footer {
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <div class="hero">
+        <div class="glyph">⚔️</div>
+        <h1>The Duel Awaits</h1>
+        <p>
+            A fully custom Yu-Gi-Oh!-style card game — original monsters,
+            spells and traps, seven playable decks, and an Extra Deck full
+            of Fusion, Synchro and Xyz summons. Play against an AI with
+            four difficulty tiers, build your own deck, or create brand
+            new cards from scratch.
+        </p>
+    </div>
+
+    <div class="portals">
+
+        <a class="portal duel" href="duel.html">
+            <div class="tag">PLAY</div>
+            <h2>Duel Engine</h2>
+            <p>
+                Pick a premade deck, a saved custom deck, or generate one
+                on the fly, then duel a full AI opponent — tribute
+                summons, trap timing, the Graveyard, and Extra Deck plays
+                all included.
+            </p>
+        </a>
+
+        <a class="portal builder" href="eckbuiler.html">
+            <div class="tag">CREATE</div>
+            <h2>Card Creator</h2>
+            <p>
+                Design your own monsters, spells and traps. Anything you
+                make here shows up as a real, playable card in the Duel
+                Engine's Deck Maker.
+            </p>
+        </a>
+
+    </div>
+
+    <div class="contents">
+        <h3>What's inside</h3>
+        <ul>
+            <li><strong>7 premade decks</strong> — Dragon, Spellcaster, Warrior, Machine, Zombie, Fairy and Fiend archetypes</li>
+            <li><strong>Deck Maker</strong> — build and edit custom decks from the entire card pool, with filters and live Extra Deck validation</li>
+            <li><strong>Deck Generator</strong> — auto-build a deck around Aggro, Trickery, Support or Burn</li>
+            <li><strong>4 difficulty tiers</strong> — including a Tutorial mode with a guided walkthrough</li>
+            <li><strong>Graveyard &amp; revival effects</strong> — Monster Reborn, mill strategies, and Graveyard-scaling cards</li>
+            <li><strong>Duel Analyzer</strong> — a full stat breakdown after every match, yours to view or skip</li>
+            <li><strong>Secret cards</strong> — a few are hidden until you go looking for them</li>
+            <li><strong>Version history</strong> — every card is tagged with the release it first appeared in</li>
+        </ul>
+    </div>
+
+    <footer>
+        Built as a long-running collaborative project. No affiliation with Konami or the Yu-Gi-Oh! franchise.
+    </footer>
+
+</div>
+
+</body>
+</html>
